@@ -1,11 +1,11 @@
 # == Class: artifactory::service
 #
-# This class manages the artifactory service.  It should not be called directly
+# This class manages the artifactory service.
 #
 #
 # === Authors
 #
-# * Justin Lambert <mailto:jlambert@letsevenup.com>
+# * Oron Bortman <mail:orong1234@gmail.com>
 #
 class artifactory::service {
 
@@ -16,7 +16,5 @@ class artifactory::service {
   service { 'artifactory':
     ensure  => running,
     enable  => true,
-    #require => Class['java'],
   }
-
 }
