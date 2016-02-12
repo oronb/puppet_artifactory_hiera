@@ -1,4 +1,7 @@
 # puppet_artifactory
 
-This module install artifactory, support os linux based rpm and dpkg and it compatible with Redhat and Debian os type.
-designed for use with hiera veriables.
+This module just install artifactory.
+Compatible with Redhat and Debian osfamily. 
+Designed for use with hiera veriables.
+
+--Tested on redhat and ubuntu 14
