@@ -8,7 +8,7 @@ class artifactory::params {
 	$destination                 = "/opt/jfrog/artifactory"
 	$package_artifactory_ensure  = "installed"
 
-        if ($version =~ /^2/) or ($version =~ /^3/) {      #Check syntax
+        if ($version =~ /^2/) or ($version =~ /^3/) {    
            $artifactory_type = 'old'
         }
 	else {
