@@ -1,9 +1,0 @@
-#Default values
-export ARTIFACTORY_HOME=<%= @destination %>
-export ARTIFACTORY_USER=artifactory
-export JAVA_HOME="/usr/lib/jvm/java-1.<%= @java_version %>.0-openjdk-amd64"
-
-export TOMCAT_HOME=<%= @destination %>/tomcat
-export ARTIFACTORY_PID=/var/opt/jfrog/run/artifactory.pid
-
-export JAVA_OPTIONS="-server -Xms<%= @Xms %> -Xmx<%= @Xmx %> -Xss<%= @Xss %> -XX:PermSize=<%= @PermSize %> -XX:MaxPermSize=<%= @MaxPermSize %> -XX:+UseG1GC"
