@@ -1,0 +1,22 @@
+#Default values
+export ARTIFACTORY_HOME=/var<%= @destination %>
+export ARTIFACTORY_USER=artifactory
+
+export TOMCAT_HOME=<%= @destination %>/tomcat
+export ARTIFACTORY_PID=/var/opt/jfrog/run/artifactory.pid
+
+<% if @java_version == '6' %>
+export JAVA_HOME=<% @java_home_6 %>
+<% elsif @java_version == '7' %>
+export JAVA_HOME=<% @java_home_7 %>
+export JAVA_OPTIONS="-server -Xms<%= @Xms %> -Xmx<%= @Xmx %> -Xss<%= @Xss %> -XX:PermSize=<%= @PermSize %> -XX:MaxPermSize=<%= @MaxPermSize %> -XX:+UseG1GC"
+<% elsif @java_version == '8' %>
+export JAVA_HOME=<% @java_home_8 %>
+export JAVA_OPTIONS="-server -Xms<%= @Xms %> -Xmx<%= @Xmx %> -Xss<%= @Xss %> -XX:+UseG1GC"
+<% end %>
+
+<% if @osfamily == 'RedHat' %>
+export JAVA_OPTIONS="$JAVA_OPTIONS -Djruby.compile.invokedynamic=false -Dfile.encoding=UTF8 -Dartdist=<% @repo_type %> -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true"
+<% elsif @osfamily == 'Debian' %>
+export JAVA_OPTIONS="$JAVA_OPTIONS -Djruby.compile.invokedynamic=false -Dfile.encoding=UTF8 -Dartdist=<% @repo_type %> -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true"
+<% end %>
