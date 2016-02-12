@@ -1,6 +1,6 @@
 # == Class: artifactory
 #
-# This class installs and configures artifactory, apache vhost, and backups.
+# This class just installs artifactory
 #
 #
 # === Parameters
@@ -8,10 +8,6 @@
 # [*ensure*]
 #   String.  Version of artifactory to be installed or latest/present
 #   Default: latest
-#
-# [*serverAlias*]
-#   String of comman seperated hostnames or array of hostnames.
-#   Default: artifactory
 #
 #
 # === Examples
@@ -22,22 +18,15 @@
 #
 # === Authors
 #
-# * Justin Lambert <mailto:jlambert@letsevenup.com>
+# * Oron Bortman <orong1234@gmail.com>
 #
 class artifactory(
- # $ensure           = 'latest',
- # $package_provider = undef,
- # $package_source   = undef,
-  $ajp_port         = 8019,
-  $data_path        = '/var/opt/jfrog/artifactory/data',
- # $backup_path      = undef,
+  $ajp_port  = 8019,
 ) {
-
-  #include ::java
   
   class { 'artifactory::java': } ->
   class { 'artifactory::install': } ->
-  class { 'artifactory::config': } ->
+  class { 'artifactory::config': } ~>
   class { 'artifactory::service': }
 
 }
