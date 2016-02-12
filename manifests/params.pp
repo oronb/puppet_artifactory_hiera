@@ -9,7 +9,7 @@ class artifactory::params {
 	$package_artifactory_ensure  = "installed"
 
         if ($version =~ /^2/) or ($version =~ /^3/) {    
-           $artifactory_type = 'old'
+           $artifactory_type = "undef"
         }
 	else {
    	   $artifactory_type = hiera('artifactory::params::artifactory_type', 'oss') 
@@ -57,7 +57,7 @@ class artifactory::params {
 	                   $package_artifactory_name    = "jfrog-artifactory-${artifactory_type}"
 	                   $repo_source                 = "http://jfrog.bintray.com/artifactory-${repo_type}s/jfrog-artifactory-${artifactory_type}-${version}.${repo_type}"
 	                 }
-	                 if  $artifactory_type == "old" { 
+	                 if  $artifactory_type == "unef" { 
 	                   $package_artifactory_name    = "artifactory"
 	                   $repo_source                 = "http://jfrog.bintray.com/artifactory-${repo_type}s/artifactory-${version}.${repo_type}"
 	                }
