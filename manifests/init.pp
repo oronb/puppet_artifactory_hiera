@@ -20,9 +20,8 @@
 #
 # * Oron Bortman <orong1234@gmail.com>
 #
-class artifactory(
-  $ajp_port  = 8019,
-) {
+
+class artifactory {
   
   class { 'artifactory::java': } ->
   class { 'artifactory::install': } ->
