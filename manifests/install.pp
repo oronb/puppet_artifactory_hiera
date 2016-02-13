@@ -1,14 +1,14 @@
 #install Artifactory
 
 class artifactory::install (
-  $artifactory_type               = $artifactory::params::artifactory_type,
+  $type                           = $artifactory::params::type,
   $version                        = $artifactory::params::version,
   $user                           = $artifactory::params::user,
   $group                          = $artifactory::params::group,
   $source                         = $artifactory::params::source,
   $destination                    = $artifactory::params::destination,
-  $package_artifactory_ensure     = $artifactory::params::package_artifactory_ensure,
-  $package_artifactory_name       = $artifactory::params::package_artifactory_name,
+  $ensure                         = $artifactory::params::ensure,
+  $name                           = $artifactory::params::name,
   $repo_type                      = $artifactory::params::repo_type,
   $repo_source                    = $artifactory::params::repo_source,
   $repo_provider                  = $artifactory::params::repo_provider,
@@ -35,26 +35,26 @@ class artifactory::install (
      ensure => 'present'
   }
 
-  exec { "download ${package_artifactory_name}":
+  exec { "download ${package}":
     command => "wget -nc ${repo_source}",
     cwd     => "${source}",
     require => Package['wget'],
   } 
 
  if $artifactory_type == "undef" {
-    package { "${package_artifactory_name}":
+    package { "${package}":
       provider => "${repo_provider}",
       ensure   => 'latest',
-      source   => "/tmp/${package_artifactory_name}-${version}.${repo_type}",
-      require  => Exec["download ${package_artifactory_name}"]
+      source   => "/tmp/${package}-${version}.${repo_type}",
+      require  => Exec["download ${package}"]
     }
  }
  else { 
-         package { "${package_artifactory_name}":
+         package { "${package}":
          provider => "${repo_provider}",
          ensure   => 'latest',
-         source   => "/tmp/${package_artifactory_name}-${version}.${repo_type}",
-         require  => Exec["download ${package_artifactory_name}"]
+         source   => "/tmp/${package}-${version}.${repo_type}",
+         require  => Exec["download ${package}"]
          }   
  }
 
@@ -63,7 +63,7 @@ class artifactory::install (
     mode   => '0775',
     owner  => 'artifactory',
     group  => 'artifactory',
-    require => Package["${package_artifactory_name}"]
+    require => Package["${package}"]
   } 
 
 }
