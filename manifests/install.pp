@@ -41,7 +41,7 @@ class artifactory::install (
     require => Package['wget'],
   } 
 
- if $artifactory_type == "unef" {
+ if $artifactory_type == "undef" {
     package { "${package_artifactory_name}":
       provider => "${repo_provider}",
       ensure   => 'latest',
