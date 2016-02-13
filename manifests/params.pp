@@ -7,6 +7,7 @@ class artifactory::params {
 	$source                      = "/tmp"
 	$destination                 = "/opt/jfrog/artifactory"
 	$package_artifactory_ensure  = "installed"
+	$ajp_port                    = hiera('artifactory::params:ajp_port', '8019')
 
         if ($version =~ /^2/) or ($version =~ /^3/) {    
            $artifactory_type = "undef"
